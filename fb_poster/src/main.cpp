@@ -34,6 +34,7 @@ int main() {
   cout << "Publishing to facebook..." << endl;
   string post_id = post_to_fb(img_path, FB_PAGE_ID_FAMILY_ISLAND);
   cout << "Post added with post_id : " << post_id << endl;
+
   // string img =
   //     generateImageFromImage("./output/test.jpg", "generate the similar
   //     image");
