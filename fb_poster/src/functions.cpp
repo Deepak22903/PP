@@ -19,7 +19,7 @@ string get_date() {
   time_t now_time = chrono::system_clock::to_time_t(now);
   tm local_time = *localtime(&now_time);
   ostringstream oss;
-  oss << put_time(&local_time, "%B %d,%Y");
+  oss << put_time(&local_time, "%d %B %Y");
   string date = oss.str();
   return date;
 }
@@ -53,14 +53,7 @@ string generatePrompt(string prompt_input) {
   json payload = {
       {"messages",
        {{{"role", "system"}, {"content", "You are a friendly assistant"}},
-        {{"role", "user"},
-         {"content",
-          "Suggest a single prompt, don't output anything other than the "
-          "prompt. The prompt will be given to a text-to-image generation AI. "
-          "dont include and single or double quotes in the response "
-          "The image is about Family Island game and free energy, which is an "
-          "item inside the game. Here is some context about the game: " +
-              prompt_input}}}}};
+        {{"role", "user"}, {"content", prompt_input}}}}};
   string jsonData = payload.dump();
 
   // Set cURL options

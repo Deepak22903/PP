@@ -42,5 +42,7 @@ size_t WriteCallback(void *contents, size_t size, size_t nmemb, string *output);
 string post_to_fb(string generated_img, string page_id);
 string get_date();
 string generateImageFromImage(string img, string prompt);
+void family_island();
+void coin_tales();
 
 #endif // HEADER_H
