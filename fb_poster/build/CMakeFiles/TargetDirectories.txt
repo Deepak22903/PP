@@ -1,3 +1,0 @@
-/mnt/deepak/data/B_Tech/PP/fb_poster/build/CMakeFiles/fb_post.dir
-/mnt/deepak/data/B_Tech/PP/fb_poster/build/CMakeFiles/edit_cache.dir
-/mnt/deepak/data/B_Tech/PP/fb_poster/build/CMakeFiles/rebuild_cache.dir

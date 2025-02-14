@@ -1,1 +1,0 @@
-/usr/bin/c++ -Wl,--dependency-file=CMakeFiles/fb_post.dir/link.d CMakeFiles/fb_post.dir/src/fb_pages.cpp.o CMakeFiles/fb_post.dir/src/functions.cpp.o CMakeFiles/fb_post.dir/src/main.cpp.o -o /mnt/deepak/data/B_Tech/PP/fb_poster/fb_post  /usr/lib/libcurl.so /usr/lib/libPocoFoundation.so.103 -lpthread -ldl -lrt
