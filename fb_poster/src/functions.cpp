@@ -187,7 +187,8 @@ string generateImage(string prompt) {
   return filename;
 }
 
-string post_to_fb(string generated_img, string page_id) {
+string post_to_fb(string generated_img, string page_id,
+                  string fb_access_token) {
   CURL *curl = curl_easy_init();
   if (!curl) {
     cerr << "Failed to initialize cURL" << endl;
@@ -206,7 +207,7 @@ string post_to_fb(string generated_img, string page_id) {
   // Add access token - FIXED: Don't include "access_token=" prefix
   field = curl_mime_addpart(form);
   curl_mime_name(field, "access_token");
-  curl_mime_data(field, FB_ACCESS_TOKEN.c_str(), CURL_ZERO_TERMINATED);
+  curl_mime_data(field, fb_access_token.c_str(), CURL_ZERO_TERMINATED);
 
   // Add image file
   field = curl_mime_addpart(form);

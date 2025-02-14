@@ -48,7 +48,8 @@ void family_island() {
   string img_path = generateImage(prompt);
   cout << "Image generated successfully with path : " << img_path << endl;
   cout << "Publishing to facebook..." << endl;
-  string post_id = post_to_fb(img_path, FB_PAGE_ID_FAMILY_ISLAND);
+  string post_id = post_to_fb(img_path, FB_PAGE_ID_FAMILY_ISLAND,
+                              FB_ACCESS_TOKEN_FAMILY_ISLAND);
   cout << "Post added with post_id : " << post_id << endl;
 }
 
@@ -114,6 +115,7 @@ void coin_tales() {
   string img_path = generateImage(prompt);
   cout << "Image generated successfully with path : " << img_path << endl;
   cout << "Publishing to facebook..." << endl;
-  string post_id = post_to_fb(img_path, FB_PAGE_ID_FAMILY_ISLAND);
+  string post_id =
+      post_to_fb(img_path, FB_PAGE_ID_COIN_TALES, FB_ACCESS_TOKEN_COIN_TALES);
   cout << "Post added with post_id : " << post_id << endl;
 }
