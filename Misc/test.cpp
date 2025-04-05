@@ -1,29 +1,16 @@
 #include <iostream>
 #include <map>
+#include <string>
 #include <vector>
+using namespace std;
 
 int main() {
-  std::vector<int> nums = {{4, 5, 1, 2, 3}}; // Example input
-  std::map<int, bool> m;
 
-  if (nums.size() < 2) {
-    std::cout << "Insufficient elements in nums.\n";
-    return 0;
+  vector<string> arr;
+  arr.push_back("a");
+  arr.insert(arr.begin() + 1, to_string(2));
+  arr.insert(arr.begin() + 2, "b");
+  for (string val : arr) {
+    cout << val << " ";
   }
-
-  for (int i = 0; i < nums.size() - 1; i++) { // Loop should go up to size() - 1
-    if (nums[i] < nums[i + 1]) {
-      m[i] = true;
-    } else {
-      m[i] = false;
-    }
-  }
-
-  // Printing map values
-  for (const auto &pair : m) {
-    std::cout << "Index " << pair.first << " -> " << std::boolalpha
-              << pair.second << "\n";
-  }
-
-  return 0;
 }
