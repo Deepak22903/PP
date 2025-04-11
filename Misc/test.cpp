@@ -1,16 +1,17 @@
 #include <iostream>
-#include <map>
-#include <string>
 #include <vector>
-using namespace std;
 
 int main() {
+  std::vector<std::vector<int>> array = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
 
-  vector<string> arr;
-  arr.push_back("a");
-  arr.insert(arr.begin() + 1, to_string(2));
-  arr.insert(arr.begin() + 2, "b");
-  for (string val : arr) {
-    cout << val << " ";
+  // Removing the second element of the second row
+  array[1].erase(array[1].begin() + 1);
+  for (const auto &floor : array) {
+    for (int unit : floor) {
+      std::cout << unit << " ";
+    }
+    std::cout << std::endl;
   }
+
+  return 0;
 }
