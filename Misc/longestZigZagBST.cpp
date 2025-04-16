@@ -1,4 +1,3 @@
-
 #include <climits>
 #include <iostream>
 #include <tuple>
@@ -19,41 +18,44 @@ struct TreeNode {
 class Solution {
   int result{};
   int final = INT_MIN;
-  vector<TreeNode *> nodes;
+  TreeNode *head;
 
 private:
-  void dfs(TreeNode *root) {
-    if (root->left) {
-      result++;
-      dfs(root->left);
-    }
-    if (root->right) {
-      result++;
-      dfs(root->right);
+  void dfs(TreeNode *root, bool isLeft, int result) {
+    if (!root)
+      return;
+
+    final = max(final, result);
+
+    if (isLeft) {
+      dfs(root->right, false, result + 1);
+      dfs(root->left, true, 1);
+    } else {
+      dfs(root->left, true, result + 1);
+      dfs(root->right, false, 1);
     }
   }
 
 public:
   int longestZigZag(TreeNode *root) {
     // Implementation goes here
-    result++;
-    dfs(root);
-    return result;
+    head = root;
+    if (!root->left && !root->right) {
+      return 0;
+    }
+    dfs(root, false, 0);
+    return final;
   }
 };
 
 int main() {
-  // Manually constructing the tree for input:
-  // [1,null,1,1,1,null,null,1,1,null,1,null,null,null,1]
 
   TreeNode *root = new TreeNode(1);
+  root->left = new TreeNode(2);
   root->right = new TreeNode(2);
-  root->right->right = new TreeNode(3);
-  root->right->left = new TreeNode(1);
-  root->right->right->left = new TreeNode(4);
-  root->right->right->right = new TreeNode(1);
-  root->right->right->left->right = new TreeNode(5);
-  root->right->right->left->right->right = new TreeNode(1);
+  root->left->left = new TreeNode(2);
+  root->left->right = new TreeNode(2);
+  root->right->right = new TreeNode(2);
 
   Solution sol;
   int result = sol.longestZigZag(root);
