@@ -1,63 +1,7 @@
-
-#include <climits>
 #include <iostream>
-#include <tuple>
-#include <vector>
 using namespace std;
 
-// Definition for a binary tree node.
-struct TreeNode {
-  int val;
-  TreeNode *left;
-  TreeNode *right;
-  TreeNode() : val(0), left(nullptr), right(nullptr) {}
-  TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
-  TreeNode(int x, TreeNode *left, TreeNode *right)
-      : val(x), left(left), right(right) {}
-};
-
-class Solution {
-  int result{};
-  int final = INT_MIN;
-  vector<TreeNode *> nodes;
-
-private:
-  void dfs(TreeNode *root) {
-    if (root->left) {
-      result++;
-      dfs(root->left);
-    }
-    if (root->right) {
-      result++;
-      dfs(root->right);
-    }
-  }
-
-public:
-  int longestZigZag(TreeNode *root) {
-    // Implementation goes here
-    result++;
-    dfs(root);
-    return result;
-  }
-};
-
-int main() {
-  // Manually constructing the tree for input:
-  // [1,null,1,1,1,null,null,1,1,null,1,null,null,null,1]
-
-  TreeNode *root = new TreeNode(1);
-  root->right = new TreeNode(2);
-  root->right->right = new TreeNode(3);
-  root->right->left = new TreeNode(1);
-  root->right->right->left = new TreeNode(4);
-  root->right->right->right = new TreeNode(1);
-  root->right->right->left->right = new TreeNode(5);
-  root->right->right->left->right->right = new TreeNode(1);
-
-  Solution sol;
-  int result = sol.longestZigZag(root);
-  cout << "Longest ZigZag Path: " << result << endl;
-
+int main(int argc, char *argv[]) {
+  cout << 5 / 2 << endl;
   return 0;
 }
