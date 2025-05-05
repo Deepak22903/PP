@@ -20,6 +20,12 @@ public:
     ListNode *curr = nullptr;
     ListNode *i = list1;
     ListNode *j = list2;
+    if (!i && !j) {
+      return nullptr;
+    }
+    if (!i || !j) {
+      return !i ? j : i;
+    }
 
     if (i->val < j->val) {
       curr = new ListNode(i->val, nullptr);
@@ -41,46 +47,45 @@ public:
     while (i && j) {
       if (i->val < j->val) {
         curr->next = new ListNode(i->val, nullptr);
+        curr = curr->next;
         i = i->next;
       } else if (i->val > j->val) {
         curr->next = new ListNode(j->val, nullptr);
+        curr = curr->next;
         j = j->next;
       } else {
         curr->next = new ListNode(i->val, nullptr);
         curr->next->next = new ListNode(j->val, nullptr);
-        curr = curr->next;
+        curr = curr->next->next;
         j = j->next;
         i = i->next;
       }
     }
-    curr = curr->next;
-    ListNode *temp = !i ? j : i;
-    curr->next = temp;
-
-    while (res) {
-      cout << res->val << endl;
-      res = res->next;
+    if (!i || !j) {
+      ListNode *temp = !i ? j : i;
+      curr->next = temp;
     }
-
-    return nullptr;
+    return res;
   }
 };
 
 int main() {
   // Example usage
-  ListNode *list1 = new ListNode(1, new ListNode(3, new ListNode(5)));
-  ListNode *list2 = new ListNode(2, new ListNode(4, new ListNode(6)));
+  // ListNode *list1 = new ListNode(1, new ListNode(2, new ListNode(4)));
+  // ListNode *list2 = new ListNode(1, new ListNode(3, new ListNode(4)));
+  ListNode *list1 = nullptr;
+  ListNode *list2 = new ListNode(0, nullptr);
 
   Solution sol;
   ListNode *mergedList = sol.mergeTwoLists(list1, list2);
 
   // Print merged list (if implemented)
-  // ListNode *current = mergedList;
-  // while (current != nullptr) {
-  //   cout << current->val << " ";
-  //   current = current->next;
-  // }
-  // cout << endl;
+  ListNode *current = mergedList;
+  while (current != nullptr) {
+    cout << current->val << " ";
+    current = current->next;
+  }
+  cout << endl;
 
   // Free memory if needed (not shown)
 
