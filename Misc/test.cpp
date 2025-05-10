@@ -2,6 +2,6 @@
 using namespace std;
 
 int main(int argc, char *argv[]) {
-  cout << 5 / 2 << endl;
+  cout << 1 / 2 << endl;
   return 0;
 }
