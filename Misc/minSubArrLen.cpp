@@ -14,16 +14,15 @@ public:
     int sum = 0;
     int minLen = INT_MAX;
     while (r < nums.size()) {
-      if (sum < target) {
-        sum += nums[r];
-        r++;
-      } else {
-        minLen = min(minLen, r - l + 1);
+      sum += nums[r];
+      r++;
+      while (sum >= target) {
+        minLen = min(minLen, r - l);
         sum -= nums[l];
         l++;
       }
     }
-    return minLen;
+    return (minLen == INT_MAX ? 0 : minLen);
   }
 };
 
