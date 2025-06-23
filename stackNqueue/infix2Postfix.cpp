@@ -28,7 +28,7 @@ int main(int argc, char *argv[]) {
       }
       st.pop();
     } else {
-      while (!st.empty() && priority(inf[i]) < priority(st.top())) {
+      while (!st.empty() && priority(inf[i]) <= priority(st.top())) {
         pos += st.top();
         st.pop();
       }
