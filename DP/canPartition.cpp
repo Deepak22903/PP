@@ -4,6 +4,23 @@ using namespace std;
 
 class Solution {
 private:
+  bool tabu(vector<int> &nums, int i, int target, vector<vector<int>> &dp) {
+    for (int i = 0; i < nums.size(); i++) {
+      dp[i][0] = true;
+    }
+    dp[0][nums[0]] = true;
+    for (int i = 1; i < nums.size(); i++) {
+      for (int j = 1; j <= target; j++) {
+        bool notpick = dp[i - 1][j];
+        bool pick = false;
+        if (nums[i] <= j) {
+          pick = dp[i - 1][j - nums[i]];
+        }
+        dp[i][j] = pick | notpick;
+      }
+    }
+    return dp[nums.size() - 1][target];
+  }
   bool f(vector<int> &nums, int i, int target, vector<vector<int>> &dp) {
     if (target == 0)
       return true;
@@ -32,7 +49,7 @@ public:
     int target = sum / 2;
     vector<vector<int>> dp(n, vector<int>(target + 1, -1));
 
-    return f(nums, n - 1, target, dp);
+    return tabu(nums, n - 1, target, dp);
   }
 };
 
