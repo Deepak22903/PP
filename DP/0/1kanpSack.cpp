@@ -6,8 +6,27 @@ class Solution {
 private:
   int tabu(int i, int W, vector<int> &val, vector<int> &wt,
            vector<vector<int>> &dp) {
-    for ()
-      dp[0]
+
+    // Base case: first row
+    vector<int> prev(W + 1, 0), curr(W + 1, 0);
+
+    for (int j = 0; j <= W; j++) {
+      if (wt[0] <= j)
+        prev[j] = val[0];
+      else
+        prev[j] = 0;
+    }
+    for (int i = 1; i < val.size(); i++) {
+      for (int j = 0; j <= W; j++) {
+        int notpick = prev[j];
+        int pick = 0;
+        if (wt[i] <= j)
+          pick = val[i] + prev[j - wt[i]];
+        curr[j] = max(notpick, pick);
+      }
+      prev = curr;
+    }
+    return prev[W];
   }
   int f(int i, int W, vector<int> &val, vector<int> &wt,
         vector<vector<int>> &dp) {
@@ -37,7 +56,7 @@ public:
     int n = val.size();
     vector<vector<int>> dp(n, vector<int>(W + 1, -1));
     // code here
-    return f(val.size() - 1, W, val, wt, dp); // placeholder
+    return tabu(val.size() - 1, W, val, wt, dp); // placeholder
   }
 };
 
