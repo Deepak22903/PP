@@ -1,9 +1,38 @@
 #include <iostream>
+#include <set>
+#include <unordered_map>
+#include <unordered_set>
 #include <vector>
 
 using namespace std;
-
 class Solution {
+public:
+  vector<vector<int>> threeSum(vector<int> &nums) {
+    vector<vector<int>> res;
+    for (int i = 0; i < nums.size(); i++) {
+      int target = -nums[i];
+      unordered_map<int, int> mp;
+      set<vector<int>> st;
+      for (auto it : st) {
+        res.push_back(it);
+      }
+
+      for (int j = +1; j < nums.size(); j++) {
+        if (i != j) {
+          int comp = target - nums[j];
+          auto it = mp.find(comp);
+          if (it != mp.end() && it->second != j && it->second != i) {
+            res.push_back({nums[i], nums[j], nums[it->second]});
+          }
+          mp[nums[j]] = j;
+        }
+      }
+    }
+    return res;
+  }
+};
+
+class solution {
 public:
   vector<int> spiralOrder(vector<vector<int>> &matrix) {
     vector<int> res;
