@@ -21,7 +21,7 @@ public:
   int rob(vector<int> &nums) {
 
     vector<vector<int>> dp(nums.size(), vector<int>(nums.size() + 2, -1));
-    return f(nums, nums.size() - 1, nums.size() + 1, dp);
+    return f(nums, :)
     // implementation goes here
   }
 };
@@ -29,6 +29,7 @@ public:
 int main() {
   vector<int> nums = {2, 7, 9, 3, 1}; // example input
   Solution sol;
+
   cout << sol.rob(nums) << endl;
   return 0;
 }
