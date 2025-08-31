@@ -36,6 +36,7 @@ public:
                             pe - 1, mp);
     return root;
   }
+  // optimize this function
   TreeNode *buildTree(vector<int> &inorder, vector<int> &postorder) {
     if (inorder.size() != postorder.size())
       return nullptr;
