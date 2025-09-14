@@ -9,26 +9,35 @@ public:
            vector<bool> &check, vector<vector<int>> &res, vector<int> &dr,
            vector<int> &dc) {
 
-    queue<vector<int>> q;
+    vector<vector<bool>> visited(n, vector<bool>(m, false));
+    queue<pair<int, int>> q;
 
-    q.push({r, c, heights[r][c]});
+    q.push({r, c});
+    visited[r][c] = true;
+
     while (!q.empty()) {
-      vector<int> curr = q.front();
-      if (curr[1] == 0 || curr[0] == 0)
-        check[0] = true;
-      if (curr[0] == n - 1 || curr[1] == m - 1)
-        check[1] = true;
+      auto [cr, cc] = q.front();
+      q.pop();
+
+      if (cc == 0 || cr == 0)
+        check[0] = true; // Pacific
+      if (cr == n - 1 || cc == m - 1)
+        check[1] = true; // Atlantic
 
       for (int i = 0; i < 4; i++) {
-        int r = curr[0] + dr[i];
-        int c = curr[1] + dc[i];
-        if (r > 0 && r < n && c > 0 && c < m && heights[r][c] <= curr[2]) {
-          q.push({r, c, heights[r][c]});
+        int nr = cr + dr[i];
+        int nc = cc + dc[i];
+
+        if (nr >= 0 && nr < n && nc >= 0 && nc < m && !visited[nr][nc] &&
+            heights[nr][nc] <= heights[cr][cc]) {
+          visited[nr][nc] = true;
+          q.push({nr, nc});
         }
       }
     }
+
     if (check[0] && check[1]) {
-      res.push_back({r, c});
+      res.push_back({r, c}); // the original cell
     }
   }
   vector<vector<int>> pacificAtlantic(vector<vector<int>> &heights) {
@@ -41,9 +50,9 @@ public:
     vector<int> dr = {0, -1, 0, 1};
     vector<int> dc = {-1, 0, 1, 0};
 
-    vector<bool> check(2, false);
     for (int i = 0; i < n; i++) {
       for (int j = 0; j < m; j++) {
+        vector<bool> check(2, false);
         bfs(n, m, i, j, heights, check, res, dr, dc);
       }
     }
